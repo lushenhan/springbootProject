@@ -1,0 +1,1 @@
+INSERT INTO `sys_user`(`sys_id`, `sys_login`, `sys_name`, `sys_department`, `sys_state`, `sys_office`, `sys_phones`, `sys_email`, `sys_remark`, `sys_role`, `sys_adress`, `create_time`, `update_time`) VALUES (1, 'zhangsan', '张三', '1', NULL, '1', '17839531525', '10587530@qq.com', '新员工', '1', NULL, '2021-12-02 20:07:39', '2021-12-02 20:07:42');
