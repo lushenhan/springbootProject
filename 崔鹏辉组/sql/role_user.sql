@@ -1,3 +1,0 @@
-INSERT INTO `role_user`(`role_id`, `role_name`, `role_description`, `role_state`, `role_department`, `role_permissions`, `create_time`, `update_time`) VALUES (1, '销售经理', '一般员工', '1', '1', '有效', NULL, NULL);
-INSERT INTO `role_user`(`role_id`, `role_name`, `role_description`, `role_state`, `role_department`, `role_permissions`, `create_time`, `update_time`) VALUES (2, '采购助理', NULL, NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `role_user`(`role_id`, `role_name`, `role_description`, `role_state`, `role_department`, `role_permissions`, `create_time`, `update_time`) VALUES (3, '采购总监', NULL, NULL, NULL, NULL, NULL, NULL);
