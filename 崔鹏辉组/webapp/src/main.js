@@ -6,7 +6,7 @@ import axios from 'axios'
 import qs from 'qs'
 Vue.config.productionTip = false
 
-axios.defaults.baseURL="http://127.0.0.1:8080/"
+axios.defaults.baseURL="http://192.168.13.234:8080/"
 axios.defaults.withCredentials = true
 axios.interceptors.response.use(function (resp) {
   if(resp.data.returnCode==20000){
