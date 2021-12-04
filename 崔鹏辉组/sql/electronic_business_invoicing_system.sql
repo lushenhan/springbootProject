@@ -11,7 +11,7 @@
  Target Server Version : 50536
  File Encoding         : 65001
 
- Date: 03/12/2021 23:27:13
+ Date: 04/12/2021 22:51:43
 */
 
 SET NAMES utf8mb4;
@@ -3776,6 +3776,27 @@ CREATE TABLE `brand`  (
 -- ----------------------------
 -- Records of brand
 -- ----------------------------
+INSERT INTO `brand` VALUES (1001, 'Apple', 'apple.com', '苹果公司');
+INSERT INTO `brand` VALUES (1002, '华为', 'huawei.com', '华为公司');
+INSERT INTO `brand` VALUES (1003, '锤子', 'chuizi.com', '锤子科技');
+INSERT INTO `brand` VALUES (1004, '小米', 'mi.com', '小米公司');
+INSERT INTO `brand` VALUES (1005, 'OPPO', 'oppo.com', 'oppo公司');
+INSERT INTO `brand` VALUES (1006, '黑鲨', 'heisha.com', '小米子公司');
+
+-- ----------------------------
+-- Table structure for brand_category
+-- ----------------------------
+DROP TABLE IF EXISTS `brand_category`;
+CREATE TABLE `brand_category`  (
+  `id` bigint(50) NOT NULL,
+  `brand_id` bigint(50) NULL DEFAULT NULL,
+  `categord_id` bigint(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of brand_category
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for category
@@ -3784,7 +3805,6 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
   `category_id` bigint(50) NOT NULL,
   `category_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `brand_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `level` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -3792,6 +3812,11 @@ CREATE TABLE `category`  (
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+INSERT INTO `category` VALUES (1001, '4G手机', 1);
+INSERT INTO `category` VALUES (1002, '5G手机', 1);
+INSERT INTO `category` VALUES (1003, '手机膜', 2);
+INSERT INTO `category` VALUES (1004, '手机壳', 2);
+INSERT INTO `category` VALUES (1005, '电池', 2);
 
 -- ----------------------------
 -- Table structure for department_user
@@ -3820,40 +3845,86 @@ DROP TABLE IF EXISTS `dictionary_datas`;
 CREATE TABLE `dictionary_datas`  (
   `dictionary_datas_id` bigint(11) NOT NULL AUTO_INCREMENT,
   `dictionary_datas_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `dict_type` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '类型',
   `dictionary_datas_typeid` int(11) NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
+  `entity_id` bigint(50) NULL DEFAULT NULL,
   PRIMARY KEY (`dictionary_datas_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'wjk 字典表内容' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 44 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'wjk 字典表内容' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of dictionary_datas
 -- ----------------------------
-INSERT INTO `dictionary_datas` VALUES (1, '白色', 1, NULL, NULL);
-INSERT INTO `dictionary_datas` VALUES (2, '黑色', 1, NULL, NULL);
-INSERT INTO `dictionary_datas` VALUES (3, '华为', 2, NULL, NULL);
-INSERT INTO `dictionary_datas` VALUES (4, '小米', 2, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (1, '白色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (2, '黑色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (3, '华为', 'pro_brand', 2, NULL, NULL, 1002);
+INSERT INTO `dictionary_datas` VALUES (4, '小米', 'pro_brand', 2, NULL, NULL, 1004);
+INSERT INTO `dictionary_datas` VALUES (5, '红色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (6, '蓝色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (7, '绿色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (8, '粉色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (9, '黄色', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (10, '土豪金', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (11, '深空灰', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (12, '海底蓝', 'base_color', 1, NULL, NULL, NULL);
+INSERT INTO `dictionary_datas` VALUES (13, 'Apple', 'base_color', 2, NULL, NULL, 1001);
+INSERT INTO `dictionary_datas` VALUES (14, '锤子', 'pro_brand', 2, NULL, NULL, 1003);
+INSERT INTO `dictionary_datas` VALUES (15, 'OPPO', 'pro_brand', 2, NULL, NULL, 1005);
+INSERT INTO `dictionary_datas` VALUES (16, '黑鲨', 'pro_brand', 2, NULL, NULL, 1006);
+INSERT INTO `dictionary_datas` VALUES (17, '4G手机', 'pro_sort', 3, NULL, NULL, 1001);
+INSERT INTO `dictionary_datas` VALUES (18, '5G手机', 'pro_sort', 3, NULL, NULL, 1002);
+INSERT INTO `dictionary_datas` VALUES (19, '手机膜', 'pro_sort', 3, NULL, NULL, 1003);
+INSERT INTO `dictionary_datas` VALUES (20, '手机壳', 'pro_sort', 3, NULL, NULL, 1004);
+INSERT INTO `dictionary_datas` VALUES (21, '电池', 'pro_sort', 3, NULL, NULL, 1005);
+INSERT INTO `dictionary_datas` VALUES (22, '电话订单', 'order_types', 4, NULL, NULL, 4001);
+INSERT INTO `dictionary_datas` VALUES (23, '网络订单', 'order_types', 4, NULL, NULL, 4002);
+INSERT INTO `dictionary_datas` VALUES (24, '内部订单', 'order_types', 4, NULL, NULL, 4003);
+INSERT INTO `dictionary_datas` VALUES (25, '商城订单', 'order_types', 4, NULL, NULL, 4004);
+INSERT INTO `dictionary_datas` VALUES (26, 'wap订单', 'order_types', 4, NULL, NULL, 4005);
+INSERT INTO `dictionary_datas` VALUES (27, '秒杀订单', 'order_types', 4, NULL, NULL, 4006);
+INSERT INTO `dictionary_datas` VALUES (28, '其他', 'order_types', 4, NULL, NULL, 4007);
+INSERT INTO `dictionary_datas` VALUES (29, '货到付款', 'method_pay', 5, NULL, NULL, 5001);
+INSERT INTO `dictionary_datas` VALUES (30, '款到发货', 'method_pay', 5, NULL, NULL, 5002);
+INSERT INTO `dictionary_datas` VALUES (31, '网上支付', 'method_pay', 5, NULL, NULL, 5003);
+INSERT INTO `dictionary_datas` VALUES (32, '支付宝', 'method_pay', 5, NULL, NULL, 5004);
+INSERT INTO `dictionary_datas` VALUES (33, '上门自提', 'method_pay', 5, NULL, NULL, 5005);
+INSERT INTO `dictionary_datas` VALUES (34, '订购', 'act_order', 6, NULL, NULL, 6001);
+INSERT INTO `dictionary_datas` VALUES (35, '支付', 'act_order', 6, NULL, NULL, 6002);
+INSERT INTO `dictionary_datas` VALUES (36, '换购', 'act_order', 6, NULL, NULL, 6003);
+INSERT INTO `dictionary_datas` VALUES (37, '普通业务', 'service_types', 7, NULL, NULL, 7001);
+INSERT INTO `dictionary_datas` VALUES (38, '号卡套餐', 'service_types', 7, NULL, NULL, 7002);
+INSERT INTO `dictionary_datas` VALUES (39, '审核通过', 'status_order', 8, NULL, NULL, 8001);
+INSERT INTO `dictionary_datas` VALUES (40, '已出库', 'status_order', 8, NULL, NULL, 8002);
+INSERT INTO `dictionary_datas` VALUES (41, '已发货', 'status_order', 8, NULL, NULL, 8003);
+INSERT INTO `dictionary_datas` VALUES (42, '已到货', 'status_order', 8, NULL, NULL, 8004);
+INSERT INTO `dictionary_datas` VALUES (43, '已归档', 'status_order', 8, NULL, NULL, 8005);
 
 -- ----------------------------
 -- Table structure for dictionary_type
 -- ----------------------------
 DROP TABLE IF EXISTS `dictionary_type`;
 CREATE TABLE `dictionary_type`  (
-  `dictionary_type_id` bigint(11) NOT NULL AUTO_INCREMENT,
-  `dictionary_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '字典名称',
-  `dictionary_level` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `dictionary_parent` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `dict_type_id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `dict_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '字典名称',
+  `dict_level` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `dict_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`dictionary_type_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'wjk 字典表类型' ROW_FORMAT = Compact;
+  PRIMARY KEY (`dict_type_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'wjk 字典表类型' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of dictionary_type
 -- ----------------------------
-INSERT INTO `dictionary_type` VALUES (1, '基本库颜色', '1', NULL, NULL, NULL);
-INSERT INTO `dictionary_type` VALUES (2, '产品品牌', '2', NULL, NULL, NULL);
-INSERT INTO `dictionary_type` VALUES (3, '产品分类', '3', NULL, NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (1, '基本库颜色', '1', 'base_color', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (2, '产品品牌', '2', 'pro_brand', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (3, '产品分类', '3', 'pro_sort', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (4, '订单类型', '4', 'order_types', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (5, '支付方式', '5', 'method_pay', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (6, '订单动作', '6', 'act_order', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (7, '业务类型', '7', 'service_types', NULL, NULL);
+INSERT INTO `dictionary_type` VALUES (8, '订单状态', '8', 'stauts_order', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for gift
@@ -3888,6 +3959,7 @@ INSERT INTO `gift` VALUES (2, '电池', NULL, NULL, NULL, NULL, NULL, NULL, NULL
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods`  (
   `goods_id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `goods_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `goods_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `category_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `category_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -3900,21 +3972,23 @@ CREATE TABLE `goods`  (
   `market_price` decimal(10, 2) NULL DEFAULT NULL,
   `mall_price` decimal(10, 2) NULL DEFAULT NULL,
   `purchase_status` int(11) NULL DEFAULT NULL,
+  `min_num` int(11) NULL DEFAULT NULL,
+  `supplier_id` bigint(50) NULL DEFAULT NULL,
   PRIMARY KEY (`goods_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1010 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1001, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1002, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1003, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1004, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1005, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1006, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1007, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1008, '苹果', '1001', '手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1);
-INSERT INTO `goods` VALUES (1009, '三星', '1001', '手机', '1001', 1, 'SANSUM', 'Galaxy S9', '蓝色', 6000.00, 6799.00, 8299.00, 1);
+INSERT INTO `goods` VALUES (1001, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1002, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1003, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1004, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1005, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1006, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1007, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1008, NULL, '苹果', '1002', '5G手机', '1001', 1, 'Apple', 'iPhone 8', '红色', 5000.00, 5299.00, 5999.00, 1, NULL, NULL);
+INSERT INTO `goods` VALUES (1009, NULL, '三星', '1001', '4G手机', '1001', 1, 'SANSUM', 'Galaxy S9', '蓝色', 6000.00, 6799.00, 8299.00, 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for logging
@@ -4032,14 +4106,14 @@ CREATE TABLE `product`  (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
-INSERT INTO `product` VALUES (1001, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
-INSERT INTO `product` VALUES (1002, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
-INSERT INTO `product` VALUES (1003, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
-INSERT INTO `product` VALUES (1004, 1, '4G手机', '132661102', 10010, 'Apple', 'iPhone 11', '白色');
-INSERT INTO `product` VALUES (1005, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
-INSERT INTO `product` VALUES (1006, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
-INSERT INTO `product` VALUES (1007, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
-INSERT INTO `product` VALUES (1008, 1, '5G手机', '132661102', 10010, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1001, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1002, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1003, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1004, 1001, '4G手机', '132661102', 1001, 'Apple', 'iPhone 11', '白色');
+INSERT INTO `product` VALUES (1005, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1006, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1007, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
+INSERT INTO `product` VALUES (1008, 1002, '5G手机', '132661102', 1001, 'Apple', 'iPhone 13', '白色');
 
 -- ----------------------------
 -- Table structure for repair_shop
@@ -4117,6 +4191,27 @@ INSERT INTO `role_user` VALUES (2, '采购助理', NULL, NULL, NULL, NULL, NULL,
 INSERT INTO `role_user` VALUES (3, '采购总监', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
+-- Table structure for supplier
+-- ----------------------------
+DROP TABLE IF EXISTS `supplier`;
+CREATE TABLE `supplier`  (
+  `supplier_id` bigint(50) NOT NULL,
+  `supplier_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `contact_person` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `contact_phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `contact_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `account` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `bank_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `bank_id` bigint(50) NULL DEFAULT NULL,
+  `contact_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`supplier_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of supplier
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for sys_order
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_order`;
@@ -4139,6 +4234,8 @@ CREATE TABLE `sys_order`  (
 -- ----------------------------
 -- Records of sys_order
 -- ----------------------------
+INSERT INTO `sys_order` VALUES (512012, '电话订单', '订购', '普通业务', '货到付款', 'EMS', '待出库', '2021-12-04 11:50:24', '2021-12-05 11:50:28', '测试人', 1, '无');
+INSERT INTO `sys_order` VALUES (1467109664778559490, '电话订单', '订购', '普通业务', '货到付款', 'EMS', '待出库', '2021-12-04 20:32:56', '2021-12-04 20:32:56', '使用者', 1, '无');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -4159,7 +4256,7 @@ CREATE TABLE `sys_user`  (
   `create_time` datetime NULL DEFAULT NULL,
   `update_time` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`sys_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'wjk 用户表' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = 'wjk 用户表' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of sys_user
@@ -4167,6 +4264,10 @@ CREATE TABLE `sys_user`  (
 INSERT INTO `sys_user` VALUES (1, 'zhangsan', '张三', '1', '有效', '1', '17839531525', '10587530@qq.com', '新员工', '1', NULL, '2021-12-02 20:07:39', '2021-12-02 20:07:42');
 INSERT INTO `sys_user` VALUES (2, 'zhaosi', '赵四', '2', '无效', '2', '12345678977', 'zhaosi@qq.com', NULL, '2', NULL, NULL, NULL);
 INSERT INTO `sys_user` VALUES (3, 'wangwu', '王五', '3', '有效', '3', '56535654515', 'wangwu@qq.com', NULL, '3', NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (4, NULL, '甲', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (5, NULL, '乙', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (6, NULL, '丙', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `sys_user` VALUES (7, NULL, '丁', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_user_address
