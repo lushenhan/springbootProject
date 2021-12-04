@@ -26,10 +26,10 @@ public class SysOrderController extends BaseController {
     }
 
     @GetMapping
-    public TableDatas queryByPage(SysOrder obj) {
+    public AxiosResult queryByPage(SysOrder obj) {
         startPage();
         List<SysOrder> list = this.service.list(new QueryWrapper<>(obj));
-        return tableDatas(list);
+        return suc(tableDatas(list));
     }
 
     @PostMapping

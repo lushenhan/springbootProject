@@ -1,9 +1,7 @@
 package com.javasm.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.Version;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -18,42 +16,42 @@ public class User implements Serializable {
 
     @TableId(value = "sys_id", type = IdType.AUTO)
 
-    private Long sysId;
+        private Long sysId;
 
     /**
      * 用户登录名
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysLogin;
 
     /**
      * 用户姓名
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysName;
 
     /**
      * 归属部门
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysDepartment;
 
     /**
      * 用户状态
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysState;
 
     /**
      * 用户职务
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysOffice;
 
     /**
      * 手机号
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysPhones;
 
     /**
@@ -71,7 +69,7 @@ public class User implements Serializable {
     /**
      * 所属角色
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String sysRole;
 
 
@@ -90,6 +88,7 @@ public class User implements Serializable {
     public void setSysId(Long sysId) {
         this.sysId = sysId;
     }
+
     public String getSysLogin() {
         return sysLogin;
     }
@@ -97,6 +96,7 @@ public class User implements Serializable {
     public void setSysLogin(String sysLogin) {
         this.sysLogin = sysLogin;
     }
+
     public String getSysName() {
         return sysName;
     }
@@ -104,6 +104,7 @@ public class User implements Serializable {
     public void setSysName(String sysName) {
         this.sysName = sysName;
     }
+
     public String getSysDepartment() {
         return sysDepartment;
     }
@@ -111,6 +112,7 @@ public class User implements Serializable {
     public void setSysDepartment(String sysDepartment) {
         this.sysDepartment = sysDepartment;
     }
+
     public String getSysState() {
         return sysState;
     }
@@ -118,6 +120,7 @@ public class User implements Serializable {
     public void setSysState(String sysState) {
         this.sysState = sysState;
     }
+
     public String getSysOffice() {
         return sysOffice;
     }
@@ -125,6 +128,7 @@ public class User implements Serializable {
     public void setSysOffice(String sysOffice) {
         this.sysOffice = sysOffice;
     }
+
     public String getSysPhones() {
         return sysPhones;
     }
@@ -132,6 +136,7 @@ public class User implements Serializable {
     public void setSysPhones(String sysPhones) {
         this.sysPhones = sysPhones;
     }
+
     public String getSysEmail() {
         return sysEmail;
     }
@@ -139,6 +144,7 @@ public class User implements Serializable {
     public void setSysEmail(String sysEmail) {
         this.sysEmail = sysEmail;
     }
+
     public String getSysRemark() {
         return sysRemark;
     }
@@ -146,6 +152,7 @@ public class User implements Serializable {
     public void setSysRemark(String sysRemark) {
         this.sysRemark = sysRemark;
     }
+
     public String getSysRole() {
         return sysRole;
     }
@@ -153,6 +160,7 @@ public class User implements Serializable {
     public void setSysRole(String sysRole) {
         this.sysRole = sysRole;
     }
+
     public String getSysAdress() {
         return sysAdress;
     }
@@ -160,6 +168,7 @@ public class User implements Serializable {
     public void setSysAdress(String sysAdress) {
         this.sysAdress = sysAdress;
     }
+
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -167,6 +176,7 @@ public class User implements Serializable {
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
+
     public LocalDateTime getUpdateTime() {
         return updateTime;
     }
@@ -178,19 +188,19 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-            "sysId=" + sysId +
-            ", sysLogin=" + sysLogin +
-            ", sysName=" + sysName +
-            ", sysDepartment=" + sysDepartment +
-            ", sysState=" + sysState +
-            ", sysOffice=" + sysOffice +
-            ", sysPhones=" + sysPhones +
-            ", sysEmail=" + sysEmail +
-            ", sysRemark=" + sysRemark +
-            ", sysRole=" + sysRole +
-            ", sysAdress=" + sysAdress +
-            ", createTime=" + createTime +
-            ", updateTime=" + updateTime +
-        "}";
+                "sysId=" + sysId +
+                ", sysLogin=" + sysLogin +
+                ", sysName=" + sysName +
+                ", sysDepartment=" + sysDepartment +
+                ", sysState=" + sysState +
+                ", sysOffice=" + sysOffice +
+                ", sysPhones=" + sysPhones +
+                ", sysEmail=" + sysEmail +
+                ", sysRemark=" + sysRemark +
+                ", sysRole=" + sysRole +
+                ", sysAdress=" + sysAdress +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                "}";
     }
 }

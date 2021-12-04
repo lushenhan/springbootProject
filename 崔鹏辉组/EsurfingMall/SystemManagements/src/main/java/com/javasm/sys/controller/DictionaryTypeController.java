@@ -1,6 +1,7 @@
 package com.javasm.sys.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.javasm.sys.entity.DictionaryDatas;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.javasm.sys.service.IDictionaryTypeService;
 import com.javasm.sys.entity.DictionaryType;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/sys/dictionarytype")
@@ -30,6 +32,14 @@ public class DictionaryTypeController extends BaseController {
         startPage();
         List<DictionaryType> list = this.service.list(new QueryWrapper<>(obj));
         return tableDatas(list);
+    }
+
+    @GetMapping("list/{types}")
+    public AxiosResult getDictDatasByTypes(@PathVariable String types){
+        String[] split = types.split(",");
+        Map<String , List<DictionaryDatas>> maps = service.queryByTypes(split);
+
+        return suc(maps);
     }
 
     @PostMapping

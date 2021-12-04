@@ -1,22 +1,26 @@
 package com.javasm.sys.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.javasm.commons.base.BaseController;
+import com.javasm.commons.entity.AxiosResult;
+import com.javasm.commons.entity.TableDatas;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.javasm.sys.service.IDictionaryDatasService;
 import com.javasm.sys.entity.DictionaryDatas;
 
 import org.springframework.web.bind.annotation.RestController;
-import com.javasm.commons.base.BaseController;
-import com.javasm.commons.entity.AxiosResult;
-import com.javasm.commons.entity.TableDatas;
+
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/sys/dictionarydatas")
+@RequestMapping("sys/dictionarydatas")
 public class DictionaryDatasController extends BaseController {
+
+
     @Resource
     private IDictionaryDatasService service;
 
@@ -25,11 +29,18 @@ public class DictionaryDatasController extends BaseController {
         return suc(this.service.getById(id));
     }
 
+
     @GetMapping
     public TableDatas queryByPage(DictionaryDatas obj) {
         startPage();
         List<DictionaryDatas> list = this.service.list(new QueryWrapper<>(obj));
         return tableDatas(list);
+    }
+    @GetMapping("/byDid")
+    public AxiosResult queryByDid( String did) {
+        QueryWrapper<DictionaryDatas> wrapper = new QueryWrapper<>();
+        wrapper.eq("dictionary_datas_typeid",did);
+        return suc(this.service.list(wrapper));
     }
 
     @PostMapping

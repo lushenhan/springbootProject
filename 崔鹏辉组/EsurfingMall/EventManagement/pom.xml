@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Eventmanagement</artifactId>
+    <artifactId>EventManagement</artifactId>
 
     <properties>
         <generator.version>3.4.1</generator.version>

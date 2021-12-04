@@ -1,7 +1,12 @@
 package com.javasm;
 
+import com.javasm.sys.entity.User;
+import com.javasm.sys.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 /**
  * @author: JAVASM
@@ -14,8 +19,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class TestDemo {
 
+    @Autowired
+    private UserServiceImpl us;
+
     @Test
     public void  add(){
-        System.out.println("232");
+        User user = new User();
+//        user.setSysName("张三");
+//        List<User> users = us.getMap(user);
+//        for (User u:users){
+//            System.out.println(u);
+//        }
     }
 }

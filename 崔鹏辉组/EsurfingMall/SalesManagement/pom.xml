@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>Salesmanagement</artifactId>
+    <artifactId>SalesManagement</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.javasm</groupId>
@@ -17,7 +17,18 @@
             <version>1.0</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.javasm</groupId>
+            <artifactId>SystemManagement</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.javasm</groupId>
+            <artifactId>SystemManagement</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
-    
+
+
 
 </project>

@@ -99,7 +99,7 @@
         color: #333;
         text-align: center;
         height: 60%;
-        line-height: 200px;
+        line-height: 20px;
     }
 
     .el-main {
@@ -107,7 +107,7 @@
         color: #333;
         height: 100%;
         text-align: center;
-        line-height: 160px;
+        line-height: 20px;
         margin-top: 10px;
         padding: 0 !important;
     }

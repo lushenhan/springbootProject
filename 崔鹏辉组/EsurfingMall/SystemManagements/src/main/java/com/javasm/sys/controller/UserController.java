@@ -1,23 +1,22 @@
 package com.javasm.sys.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.javasm.commons.base.BaseController;
+import com.javasm.commons.entity.TableDatas;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.javasm.sys.service.IUserService;
 import com.javasm.sys.entity.User;
 import org.springframework.web.bind.annotation.RestController;
 import com.javasm.commons.entity.AxiosResult;
-import com.javasm.commons.entity.TableDatas;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.github.pagehelper.page.PageMethod.startPage;
-import static com.javasm.commons.entity.AxiosResult.suc;
-
 @RestController
 @RequestMapping("/sys/user")
-public class UserController {
+public class UserController extends BaseController {
     @Resource
     private IUserService service;
 
@@ -28,12 +27,10 @@ public class UserController {
 
     @GetMapping
     public TableDatas queryByPage(User obj) {
-        startPage(1,2);
+        startPage();
         List<User> list = this.service.list(new QueryWrapper<>(obj));
-//        return tableDatas(list);
-        return null;
+        return tableDatas(list);
     }
-
 
     @PostMapping
     public AxiosResult add(@RequestBody User obj) {

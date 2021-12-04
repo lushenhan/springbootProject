@@ -18,6 +18,7 @@ public class TableDatas {
         this.pageSize = pageSize;
     }
 
+
     public List getList() {
         return list;
     }

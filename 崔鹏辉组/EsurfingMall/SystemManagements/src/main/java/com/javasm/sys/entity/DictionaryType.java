@@ -14,21 +14,21 @@ public class DictionaryType implements Serializable {
     private static final long serialVersionUID = 1L;
 
 
-    @TableId(value = "dictionary_type_id", type = IdType.AUTO)
+    @TableId(value = "dict_Type_Id", type = IdType.AUTO)
 
-    private Long dictionaryTypeId;
+    private Long dictTypeId;
 
     /**
      * 字典名称
      */
 
-    private String dictionaryName;
+    private String dictName;
 
 
-    private String dictionaryLevel;
+    private String dictLevel;
 
 
-    private String dictionaryParent;
+    private String dictType;
 
 
     private LocalDateTime createTime;
@@ -36,34 +36,38 @@ public class DictionaryType implements Serializable {
 
     private LocalDateTime updateTime;
 
-    public Long getDictionaryTypeId() {
-        return dictionaryTypeId;
+    public Long getDictTypeId() {
+        return dictTypeId;
     }
 
-    public void setDictionaryTypeId(Long dictionaryTypeId) {
-        this.dictionaryTypeId = dictionaryTypeId;
-    }
-    public String getDictionaryName() {
-        return dictionaryName;
+    public void setDictTypeId(Long dictTypeId) {
+        this.dictTypeId = dictTypeId;
     }
 
-    public void setDictionaryName(String dictionaryName) {
-        this.dictionaryName = dictionaryName;
-    }
-    public String getDictionaryLevel() {
-        return dictionaryLevel;
+    public String getDictName() {
+        return dictName;
     }
 
-    public void setDictionaryLevel(String dictionaryLevel) {
-        this.dictionaryLevel = dictionaryLevel;
-    }
-    public String getDictionaryParent() {
-        return dictionaryParent;
+    public void setDictName(String dictName) {
+        this.dictName = dictName;
     }
 
-    public void setDictionaryParent(String dictionaryParent) {
-        this.dictionaryParent = dictionaryParent;
+    public String getDictLevel() {
+        return dictLevel;
     }
+
+    public void setDictLevel(String dictLevel) {
+        this.dictLevel = dictLevel;
+    }
+
+    public String getDictType() {
+        return dictType;
+    }
+
+    public void setDictType(String dictType) {
+        this.dictType = dictType;
+    }
+
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -82,12 +86,24 @@ public class DictionaryType implements Serializable {
     @Override
     public String toString() {
         return "DictionaryType{" +
-            "dictionaryTypeId=" + dictionaryTypeId +
-            ", dictionaryName=" + dictionaryName +
-            ", dictionaryLevel=" + dictionaryLevel +
-            ", dictionaryParent=" + dictionaryParent +
-            ", createTime=" + createTime +
-            ", updateTime=" + updateTime +
-        "}";
+                "dictTypeId=" + dictTypeId +
+                ", dictName='" + dictName + '\'' +
+                ", dictLevel='" + dictLevel + '\'' +
+                ", dictType='" + dictType + '\'' +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                '}';
+    }
+
+    public DictionaryType(Long dictTypeId, String dictName, String dictLevel, String dictType, LocalDateTime createTime, LocalDateTime updateTime) {
+        this.dictTypeId = dictTypeId;
+        this.dictName = dictName;
+        this.dictLevel = dictLevel;
+        this.dictType = dictType;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+    }
+
+    public DictionaryType() {
     }
 }

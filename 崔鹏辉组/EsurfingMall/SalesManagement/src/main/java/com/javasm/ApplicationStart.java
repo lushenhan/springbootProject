@@ -1,7 +1,12 @@
 package com.javasm;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * @author:19
@@ -13,7 +18,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 
-@SpringBootApplication
+//@SpringBootApplication(scanBasePackages = "com.javasm")
+@EnableAutoConfiguration
+@SpringBootConfiguration
+@ComponentScan(basePackages = "com.javasm")
 public class ApplicationStart {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationStart.class, args);

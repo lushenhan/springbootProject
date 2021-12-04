@@ -19,30 +19,30 @@
                 <el-form-item label="基础库颜色" label-width="100">
                     <el-select v-model="prodForm.prodColor" placeholder="全部">
                         <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                v-for="color in colors"
+                                :key="color.dictionaryDatasId"
+                                :label="color.dictionaryDatasName"
+                                :value="color.dictionaryDatasName">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="产品品牌" label-width="100">
-                    <el-select v-model="value" placeholder="全部">
+                    <el-select v-model="prodForm.brandId" placeholder="全部">
                         <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                v-for="brand in brands"
+                                :key="brand.dictionaryDatasId"
+                                :label="brand.dictionaryDatasName"
+                                :value="brand.entityId">
                         </el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="产品分类" label-width="100">
-                    <el-select v-model="value" placeholder="全部">
+                    <el-select v-model="prodForm.categoryId" placeholder="全部">
                         <el-option
-                                v-for="item in options"
-                                :key="item.value"
-                                :label="item.label"
-                                :value="item.value">
+                                v-for="category in categorys"
+                                :key="category.dictionaryDatasId"
+                                :label="category.dictionaryDatasName"
+                                :value="category.entityId">
                         </el-option>
                     </el-select>
                 </el-form-item>
@@ -54,7 +54,7 @@
                     @current-change="handleCurrentChange"
                     :row-class-name="tableRowClassName"
                     :data="products"
-                        height="600"
+                    height="600"
                     border
                     style="width: 100%">
                 <el-table-column
@@ -125,8 +125,8 @@
                     prodType: '',
                     prodColor: '',
                 },
-                pagesize:5,
-                total:10,
+                pagesize: 5,
+                total: 10,
                 currentPage: 1,
                 options: [{
                     value: '选项1',
@@ -145,7 +145,10 @@
                     label: '北京烤鸭'
                 }],
                 value: '',
-                products: []
+                products: [],
+                colors: [],
+                categorys: [],
+                brands: []
             }
 
         },
@@ -176,24 +179,36 @@
                 return '';
             },
             getAllProd() {
-                this.$axios.get("commodityManagement/product?pageSize="+this.pagesize+"&pageNum="+this.currentPage).then(response => {
+                this.$axios.get("commodityManagement/product?pageSize=" + this.pagesize + "&pageNum=" + this.currentPage).then(response => {
                     this.products = response.data.list;
                     this.total = response.data.total;
                 })
             },
-            clearForm(){
+            getOption() {
+                this.$axios.get("sys/dictionarydatas/byDid?did=1").then(response => {
+                    this.colors = response.data.data;
+                })
+                this.$axios.get("sys/dictionarydatas/byDid?did=2").then(response => {
+                    this.brands = response.data.data;
+                })
+                this.$axios.get("sys/dictionarydatas/byDid?did=3").then(response => {
+                    this.categorys = response.data.data;
+                })
+            },
+            clearForm() {
                 this.prodForm = {}
             },
-            submit(){
+            submit() {
                 var param = this.$qs.stringify(this.prodForm);
                 console.log(param);
-               this.$axios.get("commodityManagement/product?"+param,).then(response=>{
-                   this.products = response.data.list;
-               })
+                this.$axios.get("commodityManagement/product?" + param,).then(response => {
+                    this.products = response.data.list;
+                })
             }
         },
         mounted() {
             this.getAllProd();
+            this.getOption();
         }
     }
 
@@ -282,23 +297,21 @@
     /*    height: 40px;*/
     /*}*/
 
-    .el-form-item {
+    .product_form .el-form-item {
         line-height: 20px;
     }
 
-    .el-form, .el-form--inline {
+    .product_form, .el-form--inline {
         height: 60px !important;
     }
 
-    .el-form {
-        text-align: left;
-        border-bottom: 1px solid #0099ff;
-    }
 
     .product_form {
         margin-top: 20px;
         /*height:auto !important;*/
         padding-left: 20px;
+        text-align: left;
+        border-bottom: 1px solid #0099ff;
 
     }
 

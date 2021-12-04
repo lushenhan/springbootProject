@@ -1,11 +1,9 @@
 package com.javasm.order.entity;
 
-import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.time.LocalDateTime;
 import java.io.Serializable;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 
 public class SysOrder implements Serializable {
 
@@ -22,67 +20,67 @@ public class SysOrder implements Serializable {
     /**
      * 订单类型
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String orderType;
 
     /**
      * 订单动作
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String orderAct;
 
     /**
      * 业务类型
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String serviceType;
 
     /**
      * 支付方式
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String payBy;
 
     /**
      * 配送方式
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String sendBy;
 
     /**
      * 订单状态
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String orderStatus;
 
     /**
      * 订单创建时间
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY , fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
     /**
      * 订单更新时间
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY , fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     /**
      * 汇款人
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private String remitter;
 
     /**
      * 收货人资料
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_EMPTY)
     private Integer recipientId;
 
     /**
      * 备注
      */
-
+    @TableField(whereStrategy = FieldStrategy.NOT_NULL)
     private String orderRemark;
 
     public Long getOrderCode() {
